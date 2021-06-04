@@ -4,7 +4,7 @@ public class InputString {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		// 이름나이출력
 		String name;
 		int age;
 		
