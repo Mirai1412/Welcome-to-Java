@@ -1,58 +1,52 @@
-
 import java.util.Scanner;
 
 public class Tic_Tac_toe {
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		char [][] board = new char[3][3];
+		
+		char[][] board = new char[3][3]; // 게임판을 나타내는 2차원 배열
 		int x, y;
-
-		Scanner sc = new Scanner(System.in);
-
-		for (int i = 0; i<3; i++) {
-			for (int j =0; j<3; j++) {
+		
+		Scanner scan  = new Scanner(System.in);
+		
+		// 게임판을 나타내는 2차원 배열을 초기화
+		for (int i = 0; i < 3; i++) 
+			for (int j = 0; j < 3; j++)
 				board[i][j] = ' ';
-
-				do {
-					for(int i1 = 0; i1<3; i1++) {
-						System.out.println(" " + board[i1][0]+ "| "
-								+ board[i1][1] +  "| " + board[i1][2]);
-						if(i1 != 2 ) 
-							System.out.println("---|---|---");
-
-					}
-
-					System.out.print("다음 수의 좌표를 입력하시오.");
-					x = sc.nextInt();
-					y = sc.nextInt();
-
-
-					if(board[x][y] != ' ') {	
-						System.out.println("잘못된 위치입니다");
-						continue;
-					} else 
-						board[x][y] = 'x';
-
-					int i1 = 0, j1 = 0;
-					for(i1 = 0; i1<3; i1++) {
-						for(j1 = 0; j1<3; j1++) {
-							if (board[i1][j1] == ' ')
-								break;
-							if (board[i1][j1] == ' ')
-								break;
-
-						}
-						if(i1<3 && j1<3)
-							board[i1][j1] = 'O';
-
-
-					}while(true);
-
-
-				}
+		
+		do {
+			
+			// 게임판을 그린다.
+			for (int i = 0; i < 3; i++) {
+				System.out.println("  " + board[i][0] + "|  "
+						+ board[i][1] + "|  " + board[i][2]); 
+				if (i != 2) 
+					System.out.println("---|---|---");				
 			}
-		}
+			
+			System.out.print("다음 수의 좌표를 입력하시오: ");
+			x = scan.nextInt();
+			y = scan.nextInt();
+			
+			// 사용자가 놓은 위치를 검사
+			if (board[x][y] != ' ') {
+				System.out.println("잘못된 위치입니다.");
+				continue;
+			} else {
+				board[x][y] = 'X';
+			}
+			
+			// 컴퓨터가 놓은 위치를 결정
+			int i = 0, j = 0;
+			outer :
+			for (i = 0; i < 3; i++) {
+				for (j = 0; j < 3; j++) {
+					if (board[i][j] == ' ') break outer;
+				}
+			}			
+			if (i < 3 && j < 3) {
+				board[i][j] = 'O';
+			}
+		} while (true);
 	}
 }
+
